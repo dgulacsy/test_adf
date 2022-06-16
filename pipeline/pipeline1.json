@@ -3,35 +3,28 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy data1",
-				"type": "Copy",
-				"dependsOn": [],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"enableStaging": false
-				}
-			},
-			{
 				"name": "Append variable1",
 				"type": "AppendVariable",
-				"dependsOn": [
-					{
-						"activity": "Copy data1",
-						"dependencyConditions": [
-							"Succeeded"
-						]
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "test_array",
+					"value": {
+						"value": "@pipeline().TriggerTime",
+						"type": "Expression"
 					}
-				],
-				"userProperties": []
+				}
 			}
 		],
+		"variables": {
+			"test": {
+				"type": "String",
+				"defaultValue": "test"
+			},
+			"test_array": {
+				"type": "Array"
+			}
+		},
 		"annotations": []
 	}
 }
